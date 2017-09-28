@@ -35,30 +35,21 @@ const AppNavigator = StackNavigator({
     IndividualDeck: {
         screen: IndividualDeck,
         navigationOptions: {
-            headerTintColor: '#fff',
-            headerStyle: {
-                backgroundColor: '#000',
-            },
+            headerTintColor: '#000',
         },
     },
     Quiz: {
         screen: Quiz,
         navigationOptions: {
             title: 'Quiz',
-            headerTintColor: '#fff',
-            headerStyle: {
-                backgroundColor: '#000',
-            },
+            headerTintColor: '#000',
         },
     },
     NewQuestion: {
         screen: NewQuestion,
         navigationOptions: {
             title: 'Add Question',
-            headerTintColor: '#fff',
-            headerStyle: {
-                backgroundColor: '#000',
-            },
+            headerTintColor: '#000',
         },
     },
 });

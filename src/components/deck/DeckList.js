@@ -9,8 +9,7 @@ class DeckList extends React.Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        fetchDecks()
-            .then(decks => dispatch(getDecks(decks)))
+        fetchDecks().then(decks => dispatch(getDecks(decks)))
             .then(() => this.setState(() => ({ready: true})));
     }
 
