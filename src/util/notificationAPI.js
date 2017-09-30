@@ -20,22 +20,22 @@ export function setNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then(data => {
-            if (data === null) {
+            if (!data) {
                 Permissions.askAsync(Permissions.NOTIFICATIONS).then(({status}) => {
                     if (status === 'granted') {
-                        Notifications.cancelAllScheduledNotificationsAsync();
+                        Notifications.cancelAllScheduledNotificationsAsync().then(() => {
+                            let today = new Date();
+                            today.setDate(today.getDate());
+                            today.setHours(23, 0, 0);
 
-                        let today = new Date();
-                        today.setDate(today.getDate());
-                        today.setHours(23, 0, 0);
+                            const notification = buildNotification();
 
-                        const notification = buildNotification();
+                            Notifications.scheduleLocalNotificationAsync(notification, {
+                                time: today,
+                                repeat: 'day',
+                            }).then(result => {
 
-                        Notifications.scheduleLocalNotificationAsync(notification, {
-                            time: today,
-                            repeat: 'day',
-                        }).then(result => {
-
+                            });
                         });
 
                         AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));

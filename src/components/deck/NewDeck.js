@@ -33,7 +33,13 @@ class AddDeck extends React.Component {
                 createDeck(newDeck);
 
                 Alert.alert(
-                    'Successful', 'Deck Added'
+                    'Successful', 'Deck Added',
+                    [
+                        {text: 'OK', onPress: () => this.props.navigation.navigate('IndividualDeck', {
+                            title: entry.text,
+                            questions : []
+                        })},
+                    ],
                 );
 
                 this.setState({text: ''});

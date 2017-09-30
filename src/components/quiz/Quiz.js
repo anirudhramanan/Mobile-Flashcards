@@ -4,13 +4,11 @@ import { NavigationActions } from 'react-navigation'
 
 export default class Quiz extends React.Component {
 
-    componentWillMount() {
-        this.setState({
-            questionIndex: 0,
-            correctAnswers: 0,
-            shouldShowAnswer: false,
-        });
-    }
+    state = {
+        questionIndex: 0,
+        correctAnswers: 0,
+        shouldShowAnswer: false,
+    };
 
     onCorrect = () => {
         const {questionIndex, correctAnswers} = this.state;
@@ -82,6 +80,7 @@ export default class Quiz extends React.Component {
                                         backgroundColor: '#70dd2f',
                                         justifyContent: 'center',
                                         height: 30,
+                                        textAlign: 'center',
                                         width: 200
                                     }}>Correct</Text>
                                 </TouchableOpacity>
@@ -90,6 +89,7 @@ export default class Quiz extends React.Component {
                                         backgroundColor: '#ff463f',
                                         justifyContent: 'center',
                                         height: 30,
+                                        textAlign: 'center',
                                         width: 200,
                                         marginTop: 20
                                     }}>Incorrect</Text>
@@ -113,6 +113,7 @@ export default class Quiz extends React.Component {
                                         backgroundColor: '#70dd2f',
                                         justifyContent: 'center',
                                         height: 30,
+                                        textAlign: 'center',
                                         width: 200
                                     }}>Start Quiz</Text>
                                 </TouchableOpacity>
@@ -121,6 +122,7 @@ export default class Quiz extends React.Component {
                                         backgroundColor: '#ff463f',
                                         justifyContent: 'center',
                                         height: 30,
+                                        textAlign: 'center',
                                         width: 200,
                                         marginTop: 20
                                     }}>Back to Deck</Text>

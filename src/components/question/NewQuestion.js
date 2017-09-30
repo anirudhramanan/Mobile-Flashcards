@@ -6,23 +6,26 @@ import {addQuestionForDeck} from '../../util/storageApi';
 
 class NewQuestion extends React.Component {
 
-    componentWillMount() {
-        this.setState({
-            question: '', answer: ''
-        })
-    }
+    state = {
+        question: '', answer: ''
+    };
 
     submitQuestion = () => {
+        let alert = {};
         const {question, answer} = this.state;
         const {title, questions} = this.props.navigation.state.params;
 
         if (question === '') {
-            Alert.alert('Mandatory', 'Question cannot be empty');
+            alert = { type: 'Mandatory', content: 'Question cannot be empty' };
             return;
         }
         if (answer === '') {
-            Alert.alert('Mandatory', 'Answer cannot be empty');
+            alert = { type: 'Mandatory', content: 'Answer cannot be empty' };
             return;
+        }
+
+        if (alert.length > 0) {
+            Alert.alert(alert.type, alert.content);
         }
 
         const params = {title, questions, question, answer};
@@ -30,8 +33,8 @@ class NewQuestion extends React.Component {
         this.props.dispatch(addQuestion(params));
 
         addQuestionForDeck({
-            card: {question: question, answer: answer},
-            deckName: title,
+            card: { question, answer },
+            deckName: title
         });
 
         Alert.alert('Successful', 'Question Added Successfully');

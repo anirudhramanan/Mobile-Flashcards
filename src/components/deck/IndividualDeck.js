@@ -5,8 +5,8 @@ import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 class IndividualDeck extends React.Component {
 
     render() {
-        const {title} = this.props.navigation.state.params;
-        const questions = this.props.decks[title].questions;
+        let {title} = this.props.navigation.state.params;
+        const questions = this.props.decks[title] && this.props.decks[title].questions;
 
         return (
             <View style={styles.container}>
