@@ -16,16 +16,12 @@ class NewQuestion extends React.Component {
         const {title, questions} = this.props.navigation.state.params;
 
         if (question === '') {
-            alert = { type: 'Mandatory', content: 'Question cannot be empty' };
+            Alert.alert('Mandatory', 'Question cannot be empty');
             return;
         }
         if (answer === '') {
-            alert = { type: 'Mandatory', content: 'Answer cannot be empty' };
+            Alert.alert('Mandatory', 'Answer cannot be empty');
             return;
-        }
-
-        if (alert.length > 0) {
-            Alert.alert(alert.type, alert.content);
         }
 
         const params = {title, questions, question, answer};
@@ -33,11 +29,17 @@ class NewQuestion extends React.Component {
         this.props.dispatch(addQuestion(params));
 
         addQuestionForDeck({
-            card: { question, answer },
+            card: {question, answer},
             deckName: title
         });
 
-        Alert.alert('Successful', 'Question Added Successfully');
+        Alert.alert('Successful', 'Question Added Successfully',
+            [
+                {
+                    text: 'OK', onPress: () =>
+                    this.props.navigation.goBack()
+                }
+            ],);
     };
 
     render() {
